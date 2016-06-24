@@ -1,7 +1,15 @@
-var exec = require('child_process').exec;
+var request = require('request');
 
-var test = function () {
-  exec("curl -X POST --data-urlencode 'payload={\"channel\": \"#juniors\", \"username\": \"SHHHHHHHH\", \"text\": \"hello from inside node\", \"icon_emoji\": \":ghost:\"}' https://hooks.slack.com/services/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");
+
+module.exports = function () {
+request({
+  uri: "https://hooks.slack.com/services/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",
+  method: "POST",
+  json: {
+    channel: "#juniors",
+    username: "SHHHHHHHH",
+    text: "working?",
+    icon_emoji: ":ghost:"
+  }
+});
 };
-
-module.exports = test;
