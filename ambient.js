@@ -1,10 +1,12 @@
 var tessel = require('tessel');
 var ambientlib = require('ambient-attx4');
 var shush = require('./shush.js');
+var wifiCon = require('./wifi-connect.js');
 var ambient = ambientlib.use(tessel.port['A']);
 
 ambient.on('ready', function () {
     var soundArr = [];
+    wifiCon();
     // Get points of light and sound data.
     setInterval(function () {
         ambient.getSoundLevel( function(err, sounddata) {
@@ -30,7 +32,7 @@ ambient.on('error', function (err) {
     console.log(err);
 });
 
-shush();
+
 
 function checkLoudness(arr){
    var sum = 0.0;
@@ -42,6 +44,6 @@ function checkLoudness(arr){
 
 function alertLoudness(){
     console.log('SHUUUSSSHHHH');
-    shush();
+    //shush();
 }
 
